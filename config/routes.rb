@@ -1,9 +1,9 @@
 BillSplit::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/about"
-  get "static_pages/blog"
-  get "static_pages/help"
-  get "static_pages/api"
+  root 'static_pages#home'
+  match '/about', to: 'static_pages#about', via: 'get'
+  match '/blog', to: 'static_pages#blog', via: 'get'
+  match '/help', to: 'static_pages#help', via: 'get'
+  match '/api', to: 'static_pages#api', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
