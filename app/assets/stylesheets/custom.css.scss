@@ -1,4 +1,24 @@
+$navbarBackground:             #ff6600;
+$navbarBackgroundHighlight:    #ff6600;
+$navbarText:                   #fff;
+$navbarBrandColor:             #fff;
+$navbarLinkColor:              #fff;
+$navbarLinkColorHover:         #fff;
+$navbarLinkColorActive:        #f55;
+$navbarLinkBackgroundHover:    #ff7f00;
+$navbarLinkBackgroundActive:   #ff7f00;
+$navbarSearchBackground:       #fff;
+$navbarSearchBackgroundFocus:  #fff;
+$navbarSearchBorder:           #fff;
+$navbarSearchPlaceholderColor: #fff;
+
 @import "bootstrap";
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 /* mixins, variables, etc. */
 
@@ -99,4 +119,41 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+#container {
+  border-collapse: collapse;
+  display: table;
+}
+
+header {
+  display: table-row;
+  vertical-align: bottom;
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
 }
