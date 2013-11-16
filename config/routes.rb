@@ -2,10 +2,12 @@ BillSplit::Application.routes.draw do
   resources :users
 
   root 'static_pages#home'
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/blog', to: 'static_pages#blog', via: 'get'
-  match '/help', to: 'static_pages#help', via: 'get'
-  match '/api', to: 'static_pages#api', via: 'get'
+  match '/about',  to: 'static_pages#about', via: 'get'
+  match '/blog',   to: 'static_pages#blog',  via: 'get'
+  match '/help',   to: 'static_pages#help',  via: 'get'
+  match '/api',    to: 'static_pages#api',   via: 'get'
+  match '/signup', to: 'users#new',          via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
