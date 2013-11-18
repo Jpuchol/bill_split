@@ -9,6 +9,8 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'capybara', '2.1.0'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.7'
