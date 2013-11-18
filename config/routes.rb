@@ -8,7 +8,7 @@ BillSplit::Application.routes.draw do
   match '/api',      to: 'static_pages#api',   via: 'get'
   match '/signup',   to: 'users#new',          via: 'get'
   match '/signin',   to: 'sessions#new',       via: 'get'
-  match '/signout',  to: 'sessions#destroy',   via: 'destroy'
+  match '/signout',  to: 'sessions#destroy',   via: 'delete'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
