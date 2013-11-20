@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+#    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -53,12 +54,17 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to users_path
   end
+#  def destroy
+#    @user.destroy
+#    respond_to do |format|
+#      format.html { redirect_to users_url }
+#      format.json { head :no_content }
+#    end
+#  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -81,5 +87,9 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to root_path unless current_user.admin?
   end
 end
