@@ -1,31 +1,9 @@
-$navbarBackground:             #ff6600;
-$navbarBackgroundHighlight:    #ff6600;
-$navbarText:                   #fff;
-$navbarBrandColor:             #fff;
-$navbarLinkColor:              #fff;
-$navbarLinkColorHover:         #fff;
-$navbarLinkColorActive:        #f55;
-$navbarLinkBackgroundHover:    #ff7f00;
-$navbarLinkBackgroundActive:   #ff7f00;
-$navbarSearchBackground:       #fff;
-$navbarSearchBackgroundFocus:  #fff;
-$navbarSearchBorder:           #fff;
-$navbarSearchPlaceholderColor: #fff;
-
 @import "bootstrap";
-@import "bootstrap-responsive";
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  @import "bootstrap-responsive";
 
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
-$grayLighter: #ececec;
-
 
 /* universal */
 
@@ -39,6 +17,10 @@ body {
 
 section {
   overflow: auto;
+}
+
+textarea {
+  resize: vertical;
 }
 
 .center {
@@ -70,6 +52,12 @@ h2 {
   color: $grayLight;
 }
 
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
 /* header */
 
 #logo {
@@ -83,14 +71,9 @@ h2 {
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: $grayLight;
     text-decoration: none;
   }
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
 }
 
 /* footer */
@@ -115,97 +98,6 @@ footer {
     li {
       float: left;
       margin-left: 10px;
-    }
-  }
-}
-
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
-
-#container {
-  border-collapse: collapse;
-  display: table;
-}
-
-header {
-  display: table-row;
-  vertical-align: bottom;
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
-
-#error_explanation {
-  color: #f00;
-  u1 {
-    list-style: none;
-    margin: 0 0 18px 0;
-  }
-}
-
-.field_with_errors {
-  @extend .control-group;
-  @extend .error;
-}
-
-aside {
-  section {
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
-  }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
     }
   }
 }
