@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
+    if signed_in?
+      @bill = current_user.bills.build
+    end
   end
 
   def about

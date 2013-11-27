@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :bills, dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   STR_REGEX = /\A[a-z0-9\-]+\z/i
@@ -23,4 +24,10 @@ class User < ActiveRecord::Base
   def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)
   end
+
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Bill.where("user_id = ?", id)
+  end
+
 end

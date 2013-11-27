@@ -11,6 +11,8 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'capybara', '2.1.0'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'money-rails'
+
 
 group :development, :test do
 	gem 'sqlite3', '1.3.7'
@@ -38,6 +40,6 @@ group :doc do
 end
 
 group :production do
-	gem 'pg', '0.15.1'
+	gem 'pg', '>=0.15.1'
 	gem 'rails_12factor', '0.0.2'
 end

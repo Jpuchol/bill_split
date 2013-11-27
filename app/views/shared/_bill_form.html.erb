@@ -1,0 +1,9 @@
+<%= form_for(@bill) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :amount,  placeholder: "Paid amount"  %>
+    <%= f.text_area :comment, placeholder: "Add comment..." %>
+    <%= f.text_area :ref,     placeholder: "Reference" %>
+  </div>
+  <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+<% end %>
