@@ -12,6 +12,8 @@ gem 'capybara', '2.1.0'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'money-rails'
+gem 'carrierwave'
+#gem 'jQuery-File-Upload'
 
 
 group :development, :test do
