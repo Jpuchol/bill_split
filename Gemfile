@@ -13,6 +13,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'money-rails'
 gem 'carrierwave'
+gem 'faker', '1.1.2'
+
 #gem 'jQuery-File-Upload'
 
 

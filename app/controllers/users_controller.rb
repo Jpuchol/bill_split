@@ -45,6 +45,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
 #    @user = User.find(params[:id])
+    
+    unless user_params[:image].nil?
+      @pic = User.find(params[:id])
+      @pic.imag.remove!
+    end
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -56,6 +61,8 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @pic = User.find(params[:id])
+    @pic.imag.remove! 
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_path

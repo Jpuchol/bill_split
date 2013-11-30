@@ -4,28 +4,9 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="span6 offset3">
-
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation %>
-
-        <%= f.label :image %>
-        <%= f.file_field :imag %>
-
+        <%=render 'fields', f: f %>
+        <p>Max size : 2Mo</p>
         <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-      </div>
-    <% end %>
+      <% end %>
   </div>
 </div>
-
-<%= link_to 'Back', root_path %>

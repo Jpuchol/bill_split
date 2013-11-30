@@ -1,19 +1,20 @@
+require 'file_size_validator'
 class User < ActiveRecord::Base
   has_many :bills, dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   STR_REGEX = /\A[a-z0-9\-]+\z/i
-  validates :name, presence: true, length: { minimum: 5, maximum: 50 },
-                    format: { with: STR_REGEX }
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :name, presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true,
-                    format: { with: EMAIL_REGEX },
+                    format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
   mount_uploader :imag, PictureUploader
-
+  validates :imag, :file_size => { :maximum => 2.megabytes.to_i }
   
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
