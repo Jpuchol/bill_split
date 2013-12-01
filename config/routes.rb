@@ -1,7 +1,10 @@
 BillSplit::Application.routes.draw do
+  resources :groups
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy ]
   resources :bills,    only: [:create, :destroy]
+  resources :groups
 
   root 'static_pages#home'
   match '/about',    to: 'static_pages#about', via: 'get'
@@ -11,6 +14,9 @@ BillSplit::Application.routes.draw do
   match '/signup',   to: 'users#new',          via: 'get'
   match '/signin',   to: 'sessions#new',       via: 'get'
   match '/signout',  to: 'sessions#destroy',   via: 'delete'
+  match '/newgrp',   to: 'groups#new',         via: 'get'
+  match '/mygrps',   to: 'groups#index',       via: 'get'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

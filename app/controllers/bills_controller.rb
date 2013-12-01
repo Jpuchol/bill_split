@@ -3,6 +3,7 @@ class BillsController < ApplicationController
 
   def create
     @bill = current_user.bills.build(bill_params)
+    @bill.amount = Money.from_string(@bill.amount, Money.default_currency)
     if @bill.save
       flash[:success] = "Bill created!"
       redirect_to root_path
@@ -13,6 +14,7 @@ class BillsController < ApplicationController
   end
 
   def destroy
+    @bill = current_user.bills.find(params[:id])
     @bill.destroy
     redirect_to root_path
   end

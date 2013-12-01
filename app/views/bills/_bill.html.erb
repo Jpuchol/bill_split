@@ -1,11 +1,11 @@
 <li>
-  <span class="content"><%= bill.content %></span>
+  <span class="comment"><%= bill.comment %></span>
   <span class="timespan">
      Posted <%= time_ago_in_words(bill.created_at) %> ago.
   </span>
   <% if current_user?(bill.user) %>
     <%= link_to "delete", bill, method: :delete,
                            data: { confirm: "You sure?" },
-                           title: bill.content %>
+                           title: bill.comment %>
   <% end %>
 </li>

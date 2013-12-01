@@ -1,0 +1,37 @@
+<% provide(:title, 'My groups') %>
+<h1>Listing my groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <% if current_user.admin? %>
+        <th>E-mail </th>
+      <% end %>
+      <th>Name </th>
+      <th>Comment </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if current_user.groups.any? || current_user.admin? %>
+      <% @groups.each do |group| %>
+        <tr>
+          <% if current_user.admin? %>
+            <td><%= group.user.email %></td>
+          <% end %>
+          <td><%= group.name %></td>
+          <td><%= group.comment %></td>
+          <td><%= link_to '<Show>', group %></td>
+          <td><%= link_to '<Edit>', edit_group_path(group) %></td>
+          <td><%= link_to '<Destroy>', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

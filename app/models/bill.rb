@@ -4,7 +4,7 @@ class Bill < ActiveRecord::Base
   validates :comment,      presence: true, length: { maximum: 50 }
   validates :user_id,      presence: true
   validates :amount_cents, presence: true
-  validates :currency,     presence: true
+
 
   monetize :amount_cents
 
