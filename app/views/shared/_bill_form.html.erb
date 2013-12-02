@@ -3,7 +3,7 @@
     <%= f.collection_select :group_id, current_user.groups.all, :id, :name, :prompt => 'Select group' %>
     <%= f.text_area :amount, placeholder: "Paid amount"  %>
     <%= f.text_area :comment, placeholder: "Add comment..." %>
-    <%= f.text_area :ref,     placeholder: "Reference" %>
+    <%= f.file_field :ref,     placeholder: "Reference" %>
   </div>
   <%= f.submit "Create", class: "btn btn-large btn-primary" %>
 <% end %>
