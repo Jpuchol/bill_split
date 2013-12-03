@@ -1,37 +1,24 @@
 <% provide(:title, 'My groups') %>
-<h1>Listing my groups</h1>
+<h1>My groups
+<%= link_to image_tag("add_group.png", :size => "50x50"), new_group_path() %>
+</h1>
 
-<table>
-  <thead>
-    <tr>
-      <% if current_user.admin? %>
-        <th>E-mail </th>
-      <% end %>
-      <th>Name </th>
-      <th>Comment </th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if current_user.groups.any? || current_user.admin? %>
-      <% @groups.each do |group| %>
-        <tr>
-          <% if current_user.admin? %>
-            <td><%= group.user.email %></td>
-          <% end %>
-          <td><%= group.name %></td>
-          <td><%= group.comment %></td>
-          <td><%= link_to '<Show>', group %></td>
-          <td><%= link_to '<Edit>', edit_group_path(group) %></td>
-          <td><%= link_to '<Destroy>', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
+<% if current_user.groups.any? || current_user.admin? %>
+  <div class="row">
+    <% @groups.each do |group| %>
+      <div class="span6 offset3">
+        <p>
+          <%= link_to group.name, group %> <span class="tab"></span>
+          <span class="right-edge">
+            <%= link_to image_tag("edit.png", :size => "30x30"), edit_group_path(group) %> 
+            <%= link_to image_tag('delete.png', :size => "30x30"), group, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </span>
+        </p>
+        <hr>
+      </div>    
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
 <br>
 

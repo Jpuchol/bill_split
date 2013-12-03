@@ -1,10 +1,10 @@
 <% provide(:title, @group.name) %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+
+<h1>
   <%= @group.name %>
-</p>
+</h1>
 
 <% if current_user.admin? %>
   <p>
