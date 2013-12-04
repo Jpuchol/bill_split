@@ -3,14 +3,17 @@ class BillsController < ApplicationController
 
   def create
     @bill = current_user.bills.build(bill_params)
-    @bill.amount = Money.from_string(@bill.amount, Money.default_currency)
     if @bill.save
       flash[:success] = "Bill created!"
+      num=@bill.id
+      flash[:success] = num
       redirect_to root_path
     else
       @feed_items = []
       render 'static_pages/home'
     end
+
+
   end
 
   def destroy

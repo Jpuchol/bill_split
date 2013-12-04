@@ -1,6 +1,9 @@
 <% provide(:title, 'My groups') %>
-<h1>Listing my groups</h1>
+<h1>My groups
+  <%= link_to image_tag("add_group.png", :size => "50x50"), newgrp_path,:rel => 'facebox' %>
+</h1>
 
+<<<<<<< HEAD
 <table>
   <thead>
     <tr>
@@ -31,9 +34,26 @@
           <td><%= link_to '  <Destroy>  ', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
+=======
+<div id="group-form" title="Add group"></div>
+
+<% if current_user.groups.any? || current_user.admin? %>
+  <div class="row">
+    <% @groups.each do |group| %>
+      <div class="span6 offset3">
+        <p>
+          <%= link_to group.name, group %> <span class="tab"></span>
+          <span class="right-edge">
+            <%= link_to image_tag("edit.png", :size => "30x30"), edit_group_path(group) %> 
+            <%= link_to image_tag('delete.png', :size => "30x30"), group, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </span>
+        </p>
+        <hr>
+      </div>    
+>>>>>>> 41c19b64f96aeaf8b87aa2bde9bc4668c8dbde76
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
 <br>
 

@@ -17,6 +17,7 @@ BillSplit::Application.routes.draw do
   match '/signout',  to: 'sessions#destroy',   via: 'delete'
   match '/newgrp',   to: 'groups#new',         via: 'get'
   match '/mygrps',   to: 'groups#index',       via: 'get'
+  match '/newbill',  to: 'bills#create',       via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
