@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%  if yield(:title).eql?("New group")
+      @facebox=true
+    end
+%>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,7 +14,7 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/header' unless @facebox%>
     <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>">
@@ -18,8 +22,10 @@
         </div>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>  
-      <%= debug (params) if Rails.env.development? %>
+      <%= render 'layouts/footer' unless @facebox%>  
+      <%= debug (params) if Rails.env.development? unless @facebox%>
     </div>
   </body>
 </html>
+
+<% @facebox=false %>

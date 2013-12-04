@@ -1,7 +1,9 @@
 <% provide(:title, 'My groups') %>
 <h1>My groups
-<%= link_to image_tag("add_group.png", :size => "50x50"), new_group_path() %>
+  <%= link_to image_tag("add_group.png", :size => "50x50"), newgrp_path,:rel => 'facebox' %>
 </h1>
+
+<div id="group-form" title="Add group"></div>
 
 <% if current_user.groups.any? || current_user.admin? %>
   <div class="row">

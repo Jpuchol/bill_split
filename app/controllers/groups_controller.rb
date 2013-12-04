@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
     if @group.save
       flash[:success] = "Group created!"
-      redirect_to root_path
+      redirect_to mygrps_path
     else
       render 'new'
     end

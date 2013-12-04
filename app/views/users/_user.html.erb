@@ -1,4 +1,5 @@
 <li>
+	
   <%= image_tag user.imag_url, :size => "50x50" %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
