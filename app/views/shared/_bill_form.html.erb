@@ -1,15 +1,15 @@
 <%= form_for @bill do |f| %>
-	<div class="field">
-		<%= f.text_field :amount, placeholder: "Paid amount"  %>
-		<%= f.text_field :comment, placeholder: "Add comment..." %>
-		<%= f.file_field :ref,     placeholder: "Reference" %>
-	</div>
+  <div class="field">
+    <%= f.text_field :amount,  placeholder: "Paid amount..." %>
+    <%= f.text_field :comment, placeholder: "Add comment..." %>
+    <%= f.file_field :ref,     placeholder: "Reference" %>
+  </div>
 	<!-- <%= form_for :bill_users do |f| %>
 		<div class="field">
 			<%= f.collection_select :group, current_user.groups.all, :id, :name, :prompt => 'Select group' %>
 		</div>
 	<% end %>-->
-	<div class="actions">
-		<%= f.submit "Create", class: "btn btn-large btn-primary" %>
-	</div>
+  <div class="actions">
+    <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  </div>
 <% end %>

@@ -1,27 +1,24 @@
-<table>
-  <thead>
-    <tr>
-      <th>Email   </th>
-      <th>    </th>
-      <th>    </th>
-    </tr>
-  </thread>
-
-  <tbody>
+<div id="group-form" title="Add group"></div>
+  <div class="row">
     <% @users.each do |usr| %>
-      <tr>
-        <td><%= usr.email %></td>
-        <% unless current_user?(usr) %>
-          <div id="member_form">
-            <td><%=  %></td>
-            <% if usr.member?(usr) %>
-              <td>Member</td>
+      <div class="span6">
+        <p>
+          <text><%= usr.email %></text>
+          <span class="right-edge">
+            <% if current_user?(usr) %>
+              <td>Owner</td>
             <% else %>
-              <td>Not member</td>
+              <% if usr.member?(usr) %>
+                <%= link_to image_tag("remove-image.png", :size => "25x25" ),
+                    "#" %>
+              <% else %>
+                <%= link_to image_tag("add-image.png", :size => "25x25" ),
+                    "#" %>
+              <% end %>
             <% end %>
-          </div>
-        <% end %>
-      </tr>
+          </span>
+        </p>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
