@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201112707) do
+ActiveRecord::Schema.define(version: 20131203103805) do
 
   create_table "bills", force: true do |t|
     t.integer  "user_id"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20131201112707) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "members", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["group_id", "user_id"], name: "index_members_on_group_id_and_user_id", unique: true
+  add_index "members", ["group_id"], name: "index_members_on_group_id"
+  add_index "members", ["user_id"], name: "index_members_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

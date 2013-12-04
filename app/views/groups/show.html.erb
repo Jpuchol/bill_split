@@ -1,23 +1,32 @@
 <% provide(:title, @group.name) %>
-<p id="notice"><%= notice %></p>
+<h1>Show group</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
-
-<% if current_user.admin? %>
-  <p>
-    <strong>Owner:</strong>
-    <%= @group.user.email %>
-    ( user_id = <%= @group.user_id %> )
-  </p>
-<% end %>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @group.comment %>
-</p>
-
+<div class="row">
+  <aside class="span4">
+    <section>
+      <p>
+      <strong>Name:</strong>
+        <%= @group.name %>
+      </strong>
+      </p>
+      <% if current_user.admin? %>
+        <p>
+        <strong>Owner:</strong>
+          <%= @group.user.email %>
+          ( user_id = <%= @group.user_id %> )
+        </strong>
+        </p>
+      <% end %>
+      <p>
+      <strong>Comment:</strong>
+      <%= @group.comment %>
+      </p>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3>Users</h3>    
+    <%= render 'shared/users' %>
+  </div>
+</div>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

@@ -2,6 +2,7 @@ require 'file_size_validator'
 class User < ActiveRecord::Base
   has_many :bills,  dependent: :destroy
   has_many :groups, dependent: :destroy
+  has_many :members, foreign_key: "user_id", dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   STR_REGEX = /\A[a-z0-9\-]+\z/i
@@ -24,6 +25,18 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def member?(other_user)
+    members.find_by(user_id: other_user.id)
+  end
+
+  def member!(other_user)
+    members.create!(user_id: oher_user.id)
+  end
+
+  def unmember!(other_user)
+    members.find_by(user_id: other_user.id).destroy!
+  end
+
   private
   def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)
@@ -33,5 +46,4 @@ class User < ActiveRecord::Base
     # This is preliminary. See "Following users" for the full implementation.
     Bill.where("user_id = ?", id)
   end
-
 end

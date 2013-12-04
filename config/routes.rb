@@ -4,6 +4,7 @@ BillSplit::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy ]
   resources :bills,    only: [:create, :destroy]
+  resources :members,  only: [:create, :destroy ]
   resources :groups
 
   root 'static_pages#home'

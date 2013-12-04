@@ -5,10 +5,11 @@
   <thead>
     <tr>
       <% if current_user.admin? %>
-        <th>E-mail </th>
+        <th>E-mail   </th>
       <% end %>
-      <th>Name </th>
-      <th>Comment </th>
+      <th>Name   </th>
+      <th>Comment   </th>
+      <th># members   </th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,11 +23,12 @@
           <% if current_user.admin? %>
             <td><%= group.user.email %></td>
           <% end %>
-          <td><%= group.name %></td>
-          <td><%= group.comment %></td>
-          <td><%= link_to '<Show>', group %></td>
-          <td><%= link_to '<Edit>', edit_group_path(group) %></td>
-          <td><%= link_to '<Destroy>', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= group.name   %></td>
+          <td><%= group.comment   %></td>
+          <td><%= group.members.count   %></td>
+          <td><%= link_to '  <Show>  ', group %></td>
+          <td><%= link_to '  <Edit>  ', edit_group_path(group) %></td>
+          <td><%= link_to '  <Destroy>  ', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% end %>

@@ -6,4 +6,7 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def init_member(user)
+    current_user.members.build(user_id: user.id)
+  end
 end
