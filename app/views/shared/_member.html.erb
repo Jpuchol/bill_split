@@ -1,0 +1,4 @@
+<%= form_for(current_user.members.build(user_id: usr.id)) do |f| %>
+  <div><%= f.hidden_field :user_id %></div>
+  <%= f.submit "Add user", class: "btn btn-large btn-primary" %>
+<% end %>
