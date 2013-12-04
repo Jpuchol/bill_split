@@ -3,7 +3,7 @@
   <%= image_tag user.imag_url, :size => "50x50" %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
-    <span class="right-edge">
+  	<span class="right-edge">
     	<%= link_to image_tag('delete.png', :size => "30x30"), user, method: :delete, data: { confirm: 'Are you sure?' } %>
     </span>
   <% end %>
