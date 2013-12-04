@@ -5,7 +5,5 @@ class Bill < ActiveRecord::Base
   validates :user_id,      presence: true
   validates :amount, presence: true
 
-  monetize :amount_cents
-
 
 end

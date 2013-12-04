@@ -1,7 +1,6 @@
 <% provide(:title, @group.name) %>
-<<<<<<< HEAD
+
 <h1>Show group</h1>
-=======
 <p id="notice"><%= notice %></p>
 
 
@@ -9,19 +8,7 @@
   <%= @group.name %>
 </h1>
 
-<% if current_user.admin? %>
-  <p>
-    <strong>Owner:</strong>
-    <%= @group.user.email %>
-    ( user_id = <%= @group.user_id %> )
-  </p>
-<% end %>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @group.comment %>
-</p>
->>>>>>> 41c19b64f96aeaf8b87aa2bde9bc4668c8dbde76
 
 <div class="row">
   <aside class="span4">
@@ -45,10 +32,7 @@
       </p>
     </section>
   </aside>
-  <div class="span8">
-    <h3>Users</h3>    
+  <div class="row">   
     <%= render 'shared/users' %>
   </div>
 </div>
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>

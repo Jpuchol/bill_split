@@ -3,38 +3,6 @@
   <%= link_to image_tag("add_group.png", :size => "50x50"), newgrp_path,:rel => 'facebox' %>
 </h1>
 
-<<<<<<< HEAD
-<table>
-  <thead>
-    <tr>
-      <% if current_user.admin? %>
-        <th>E-mail   </th>
-      <% end %>
-      <th>Name   </th>
-      <th>Comment   </th>
-      <th># members   </th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if current_user.groups.any? || current_user.admin? %>
-      <% @groups.each do |group| %>
-        <tr>
-          <% if current_user.admin? %>
-            <td><%= group.user.email %></td>
-          <% end %>
-          <td><%= group.name   %></td>
-          <td><%= group.comment   %></td>
-          <td><%= group.members.count   %></td>
-          <td><%= link_to '  <Show>  ', group %></td>
-          <td><%= link_to '  <Edit>  ', edit_group_path(group) %></td>
-          <td><%= link_to '  <Destroy>  ', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-=======
 <div id="group-form" title="Add group"></div>
 
 <% if current_user.groups.any? || current_user.admin? %>
@@ -43,6 +11,10 @@
       <div class="span6 offset3">
         <p>
           <%= link_to group.name, group %> <span class="tab"></span>
+          <% if current_user.admin? %>
+            (<%=  group.user.name   %> : 
+             <%=group.user.email %>)
+          <% end %>
           <span class="right-edge">
             <%= link_to image_tag("edit.png", :size => "30x30"), edit_group_path(group) %> 
             <%= link_to image_tag('delete.png', :size => "30x30"), group, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -50,7 +22,6 @@
         </p>
         <hr>
       </div>    
->>>>>>> 41c19b64f96aeaf8b87aa2bde9bc4668c8dbde76
     <% end %>
   </div>
 <% end %>
