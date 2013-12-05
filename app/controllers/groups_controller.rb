@@ -24,14 +24,14 @@ class GroupsController < ApplicationController
   def edit
   end
 
+
   # POST /groups
   # POST /groups.json
   def create
     @group = current_user.groups.build(group_params)
     @group.user = current_user
-    @user = @group.user
     if @group.save
-      current_user.member!(@group.user)
+      current_user.member!(current_user)
       flash[:success] = "Group created!"
       redirect_to mygrps_path
     else
@@ -59,6 +59,8 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to root_path
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

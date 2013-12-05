@@ -7,6 +7,7 @@ class MembersController < ApplicationController
     redirect_to @group
   end
 
+
   def destroy
     @user = Member.find(params[:id])
     current_user.unmember!(@user)
