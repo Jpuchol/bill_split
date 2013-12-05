@@ -27,11 +27,11 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-#    @group = Group.new(group_params)
     @group = current_user.groups.build(group_params)
-    @group.user_id = current_user.id
-
+    @group.user = current_user
+    @user = @group.user
     if @group.save
+      current_user.member!(@group.user)
       flash[:success] = "Group created!"
       redirect_to mygrps_path
     else

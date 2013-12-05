@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def member!(other_user)
-    members.create!(user_id: oher_user.id)
+    members.create!(user_id: other_user.id)
   end
 
   def unmember!(other_user)

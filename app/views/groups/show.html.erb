@@ -1,48 +1,19 @@
 <% provide(:title, @group.name) %>
-<<<<<<< HEAD
-=======
-
->>>>>>> e35f8515c91ad37df94f4603285e0c2d449fe29e
 <h1>Show group</h1>
 <p id="notice"><%= notice %></p>
 
+<h1><%= @group.name %></h1>
 
-<h1>
-  <%= @group.name %>
-</h1>
-
-
-<<<<<<< HEAD
-<p>
-  <strong>Comment:</strong>
+<h3 class="center">
   <%= @group.comment %>
-</p>
-=======
->>>>>>> e35f8515c91ad37df94f4603285e0c2d449fe29e
+</h3>
+<% if current_user.admin? %>
+  <h3><%= @group.user.email %></h3>
+<% end %>
 
 <div class="row">
-  <aside class="span4">
-    <section>
-      <p>
-      <strong>Name:</strong>
-        <%= @group.name %>
-      </strong>
-      </p>
-      <% if current_user.admin? %>
-        <p>
-        <strong>Owner:</strong>
-          <%= @group.user.email %>
-          ( user_id = <%= @group.user_id %> )
-        </strong>
-        </p>
-      <% end %>
-      <p>
-      <strong>Comment:</strong>
-      <%= @group.comment %>
-      </p>
-    </section>
-  </aside>
-  <div class="row">   
-    <%= render 'shared/users' %>
+  <div class="center">
+    <h3>All users</h3>
   </div>
+  <%= render 'shared/users' %>
 </div>
