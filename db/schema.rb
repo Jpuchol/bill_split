@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203103805) do
+ActiveRecord::Schema.define(version: 20131205001429) do
+
+  create_table "bill_users", force: true do |t|
+    t.integer  "bill_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bill_users", ["bill_id", "user_id"], name: "index_bill_users_on_bill_id_and_user_id", unique: true
+  add_index "bill_users", ["bill_id"], name: "index_bill_users_on_bill_id"
+  add_index "bill_users", ["user_id"], name: "index_bill_users_on_user_id"
 
   create_table "bills", force: true do |t|
     t.integer  "user_id"
