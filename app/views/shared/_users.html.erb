@@ -9,14 +9,19 @@
               <td>Owner</td>
             <% else %>
               <% if usr.member?(usr) %>
-                <%= link_to image_tag("remove-image.png", :size => "25x25" ),
-                    "#" %>
-              <% else %>
-                <%= form_for(current_user.members.build(user_id: usr.id)) do |f| %>
-                <div><%= f.hidden_field :user_id %></div>
-                <%= f.submit "Add", :type => :image, :src => "images/add-image.png", :size => "25x25" %>
+                <% form_for(current_user.members.find_by(user_id: usr),
+                     html: { method: :delete }) do |f| %>
+                  <%= f.submit "Unmember", type => image,
+                      :src => "images/remove-image.png" %>
                 <% end %>
-                <%= link_to image_tag( "add-image.png", :size => "25x25") %>
+  <!-- <%= link_to image_tag("remove-image.png", :size => "25x25" ), "#" %> -->
+              <% else %>
+                <%= form_for(group.members.build(user_id: usr.id)) do |f| %>
+                <div><%= f.hidden_field :user_id %></div>
+                <%= f.submit "Add", :type => :image,
+                    :src => "images/add-image.png", :size => "25x25" %>
+                <% end %>
+        <!--   <%= link_to image_tag( "add-image.png", :size => "25x25") %> -->
               <% end %>
             <% end %>
           </span>

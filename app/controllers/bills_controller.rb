@@ -25,7 +25,7 @@ class BillsController < ApplicationController
   private
 
     def bill_params
-      params.require(:bill).permit(:comment)
+      params.require(:bill).permit(:comment, :amount)
     end
 
     def correct_user

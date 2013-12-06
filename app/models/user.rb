@@ -2,7 +2,8 @@ require 'file_size_validator'
 class User < ActiveRecord::Base
   has_many :bills,  dependent: :destroy
   has_many :groups, dependent: :destroy
-  has_many :members, foreign_key: "user_id", dependent: :destroy
+  has_many :members,    foreign_key: "user_id", dependent: :destroy
+  has_many :bill_users, foreign_key: "user_id", dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   STR_REGEX = /\A[a-z0-9\-]+\z/i
