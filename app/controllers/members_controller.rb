@@ -3,7 +3,7 @@ class MembersController < ApplicationController
 
   def create
     @user = User.find(params[:member][:user_id])
-    current_user.member!(@user)
+    @group.member!(@user)
     redirect_to @group
   end
 
@@ -13,4 +13,10 @@ class MembersController < ApplicationController
     current_user.unmember!(@user)
     redirect_to @group
   end
+
+  private 
+    def members_params
+    params.require(:user).permit(:user_id)
+    end
+
 end

@@ -1,0 +1,28 @@
+<div id="group-form" title="Add group"></div>
+  <div class="row">
+    <% @users.each do |usr| %>
+      <%= form_for(@group.members.build(user_id: usr.id)) do |f| %>
+        <div class="span6 offset3">
+          <p><%= usr.email %>
+            <span class="right-edge">
+              <% if current_user?(usr) %>
+                Owner
+              <% else %>
+                <% if @group.member?(usr) %>
+                  <%= link_to image_tag("remove-image.png", :size => "25x25" ),
+                      "#" %>
+                <% else %>
+                  
+                    <%= f.hidden_field :user_id 
+                    f.submit "Add"
+                    %>
+                <% end %>
+              <% end %>
+            </span>
+
+          </p> <hr>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 BillSplit::Application.routes.draw do
-  resources :groups
+  resources :groups do
+      get :group_id, :user_id
+  end
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy ]

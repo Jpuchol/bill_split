@@ -25,18 +25,7 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
-
-  def member?(other_user)
-    members.find_by(user_id: other_user.id)
-  end
-
-  def member!(other_user)
-    members.create!(user_id: other_user.id)
-  end
-
-  def unmember!(other_user)
-    members.find_by(user_id: other_user.id).destroy!
-  end
+  
 
   private
   def create_remember_token
