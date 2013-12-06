@@ -25,15 +25,15 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
-  
-
-  private
-  def create_remember_token
-    self.remember_token = User.encrypt(User.new_remember_token)
-  end
 
   def feed
     # This is preliminary. See "Following users" for the full implementation.
-    Bill.where("user_id = ?", id)
+  #  Bill.where("user_id = ?", id)
+    Bill.from_bill_users_by(self)
+  end
+  
+  private
+  def create_remember_token
+    self.remember_token = User.encrypt(User.new_remember_token)
   end
 end

@@ -7,4 +7,9 @@ class Bill < ActiveRecord::Base
   validates :amount, presence: true
 
 
+  def self.from_bill_users_by(user)
+    bill_user_ids = "SELECT bill_id FROM bill_users
+                       WHERE user_id = :user_id"
+    where("id IN (#{bill_user_ids})", user_id: user.id)
+  end
 end
