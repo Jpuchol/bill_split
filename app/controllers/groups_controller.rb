@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @users = User.all
+    @group = Group.find(params[:id])
   end
 
   # GET /groups/new
@@ -31,7 +32,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.build(group_params)
     @group.user = current_user
     if @group.save
-      current_user.member!(current_user)
+      #current_user.member!(current_user)
       flash[:success] = "Group created!"
       redirect_to mygrps_path
     else
@@ -63,6 +64,10 @@ class GroupsController < ApplicationController
 
 
   private
+
+    def group_params
+    params.require(:user).permit(:name, :comment)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
