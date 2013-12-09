@@ -12,10 +12,9 @@
                   <%= link_to image_tag("remove-image.png", :size => "25x25" ),
                       "#" %>
                 <% else %>
-                  
-                    <%= f.hidden_field :user_id 
-                    f.submit "Add"
-                    %>
+                    <%= f.hidden_field :group_id %>
+                    <%= f.hidden_field :user_id %>
+                    <%= f.submit "Add", class: "btn btn-large btn-primary" %>
                 <% end %>
               <% end %>
             </span>
