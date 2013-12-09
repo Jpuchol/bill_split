@@ -1,0 +1,25 @@
+<div id="group-form" title="Add group"></div>
+  <div>
+    <h2> Groups </h2>
+  </div> 
+  <% @group=Group.where("id IN (SELECT group_id FROM members WHERE user_id = :user_id)",user_id: current_user.id) %>
+  <% if @group.any? %>
+    <% @group.each do |group| %>
+      <div >
+        <%= group.name %>
+        <span class="right-edge">
+          <% if group.user.id==@bill.user_id %>
+            
+            
+            <%= form_for :data, html: { :style => "display:inline;" } do |f| %>
+              <%= f.hidden_field :group_id, :value => group.id %>
+              <%= f.hidden_field :bill_id, :value => @bill.id %>
+              <%= f.submit "Add", class: "btn btn-small btn-primary" %>
+            <% end %>
+          <% end %>
+        </span>
+        <hr>
+      </div>
+    <% end %>
+  <%end %>
+</div>

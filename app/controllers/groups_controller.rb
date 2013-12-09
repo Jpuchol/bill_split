@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
+    @my_groups=current_user.group_feed.paginate(page: params[:page])
 #    @groups = current_user.groups.paginate(page: params[:page])
   end
 
@@ -14,6 +15,8 @@ class GroupsController < ApplicationController
   def show
     @users = User.all
     @group = Group.find(params[:id])
+    @bill = current_user.bills.build
+    @bill_user = current_user.bill_users.build
   end
 
   # GET /groups/new
@@ -32,7 +35,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.build(group_params)
     @group.user = current_user
     if @group.save
-      #current_user.member!(current_user)
+      @group.member!(current_user)
       flash[:success] = "Group created!"
       redirect_to mygrps_path
     else
@@ -65,9 +68,6 @@ class GroupsController < ApplicationController
 
   private
 
-    def group_params
-    params.require(:user).permit(:name, :comment)
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])

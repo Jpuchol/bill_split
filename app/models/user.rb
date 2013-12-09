@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
   #  Bill.where("user_id = ?", id)
     Bill.from_bill_users_by(self)
   end
+
+  def group_feed
+    Group.from_which_i_am_a_member(self)
+  end
   
   private
   def create_remember_token

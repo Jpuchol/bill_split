@@ -7,15 +7,19 @@ class Group < ActiveRecord::Base
   validates :name,    presence: true, length: { minimum: 5, maximum: 50 }
   validates :comment, presence: true
 
-  def member?(other_user)
-    members.find_by(user_id: other_user.id)
-  end
+	def member?(other_user)
+		members.find_by(user_id: other_user.id)
+	end
 
-  def member!(other_user)
-    members.create!(user_id: other_user.id)
-  end
+	def member!(other_user)
+		members.create!(user_id: other_user.id)
+	end
 
-  def unmember!(other_user)
-    members.find_by(user_id: other_user.id).destroy!
-  end
+	def unmember!(id_to_del)
+		members.find_by(id: id_to_del).destroy!
+	end
+
+	def self.from_which_i_am_a_member(user)
+    	where("id IN (SELECT group_id FROM members WHERE user_id = :current_user_id) ",current_user_id: user.id)
+	end
 end
