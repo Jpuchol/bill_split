@@ -34,8 +34,6 @@
       <div class="span6 offset3">
         <p>
           <%= link_to group.name, group %> <span class="tab"></span>
-          <text>   #members: </text>
-          <text><%= group.members.count %></text>
           <% if current_user.admin? %>
             (<%=  group.user.name   %> : 
              <%=group.user.email %>)

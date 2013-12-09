@@ -4,6 +4,7 @@
 	<%= f.text_field :comment, placeholder: "Add comment..." %>
 	<%= f.file_field :ref,     placeholder: "Reference" %>
 	<%= f.hidden_field :group_id, :value => group.id %>
-	<%= f.submit "Add bill" %>
+	<p></p>
+	<%= f.submit "Add bill",class: "btn btn-large btn-primary"%>
 	</div>
 <% end %>

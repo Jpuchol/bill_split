@@ -4,9 +4,10 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= @group.name %>
+        Name : <%=@group.name %>
       </h1>
-      <p> <%= @group.comment %> </p>
+      <p> Description of the group : <%= @group.comment %> </p>
+      <p> <%= pluralize(@group.members.count, "member")%> </p>
     </section>
 
     <section>
