@@ -4,7 +4,18 @@ class BillUsersController < ApplicationController
 
 
   def create
-    
+    @users = User.where("id IN (SELECT user_id FROM members WHERE group_id=:my_group_id)",my_group_id: params[:data][:group_id])
+    @bill = Bill.find(params[:data][:bill_id])
+    if @users.any?
+      @users.each do |user|
+        test =  BillUser.where("user_id = ? AND bill_id = ?",params[:data][:bill_id],user.id)
+        unless test.any?
+          @bill.user!(user)
+        end
+      end
+    end
+    flash[:success] = "Group created!"
+    redirect_to @bill
   end
 
   def destroy

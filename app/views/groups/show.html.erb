@@ -10,7 +10,7 @@
     </section>
 
     <section>
-      <%= render 'shared/bill_form' %>
+      <%= render :partial => 'bill_form', :locals => { :group => @group }%>
     </section>
 	
   </aside>

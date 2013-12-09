@@ -11,8 +11,9 @@ class Bill < ActiveRecord::Base
     bill_users.find_by(user_id: user.id)
   end
 
-  def user!(user)
-    bill_users.create!(user_id: user.id)
+  def user!(user,bill)
+    sql = "INSERT INTO bill_users (`bill_id`,`user_id`) VALUES ("+(bill.id).to_s+","+(user.id).to_s+")"
+    records_array = ActiveRecord::Base.connection.execute(sql)
   end
 
 

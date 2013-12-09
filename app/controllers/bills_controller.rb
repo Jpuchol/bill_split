@@ -1,29 +1,41 @@
 class BillsController < ApplicationController
   before_action :signed_in_user
 
+  def show
+    @bill = Bill.find(params[:id])
+  end
 
   def create
+=begin
     @bill = current_user.bills.build(bill_params)
     if @bill.save
       flash[:success] = "Bill created!"
       @bill.user!(current_user)
-      redirect_to root_path
+
+      redirect_to @bill
     else
       @feed_items = []
       render 'static_pages/home'
     end
-  end
-=begin
-  @group = current_user.groups.build(group_params)
-    @group.user = current_user
-    if @group.save
-      @group.member!(current_user)
-      flash[:success] = "Group created!"
-      redirect_to mygrps_path
-    else
-      render 'new'
-    end
 =end
+    @users = User.where("id IN (SELECT user_id FROM members WHERE group_id = ?)",params[:bill][:group_id])
+    bill_params[:comment]=params[:bill][:comment]
+    bill_params[:amount]=params[:bill][:amount]
+    @bill = current_user.bills.build(bill_params)
+    if @bill.save
+      flash[:success] = "Bill created"
+      if @users.any?
+        @users.each do |user|
+          test =  BillUser.where("user_id = ? AND bill_id = ?",user.id,params[:bill][:bill_id])
+          if test.any?
+          else
+            @bill.user!(user,@bill)
+          end
+        end
+      end
+    redirect_to @bill
+    end  
+  end
 
   def destroy
     @bill = current_user.bills.find(params[:id])
@@ -34,7 +46,7 @@ class BillsController < ApplicationController
   private
 
     def bill_params
-      params.require(:bill).permit(:comment, :amount)
+      params.require(:bill).permit(:comment, :amount) 
     end
 
     def correct_user
