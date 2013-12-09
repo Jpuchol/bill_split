@@ -12,7 +12,7 @@ class Bill < ActiveRecord::Base
   end
 
   def user!(user,bill)
-    sql = "INSERT INTO bill_users (`bill_id`,`user_id`) VALUES ("+(bill.id).to_s+","+(user.id).to_s+")"
+    sql = "INSERT INTO bill_users (`bill_id`,`user_id) VALUES ("+(bill.id).to_s+","+(user.id).to_s+")"
     records_array = ActiveRecord::Base.connection.execute(sql)
   end
 

@@ -1,5 +1,6 @@
 <% if @feed_items.any? %>
   <ol class="bills">
+  	<h2> Bill List </h2>
     <%= render partial: 'shared/feed_item', collection: @feed_items %>
   </ol>
   <%= will_paginate @feed_items %>
