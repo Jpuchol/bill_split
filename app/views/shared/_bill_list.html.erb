@@ -3,4 +3,6 @@
     <%= render partial: 'shared/feed_item', collection: @bill_items %>
   </ol>
   <%= will_paginate @bill_items %>
+
+  <%= render partial: 'shared/splitted_bills', collection: @user_bills %>
 <% end %>

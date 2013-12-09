@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205001429) do
+ActiveRecord::Schema.define(version: 20131207153223) do
 
   create_table "bill_users", force: true do |t|
     t.integer  "bill_id"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20131205001429) do
   add_index "members", ["group_id", "user_id"], name: "index_members_on_group_id_and_user_id", unique: true
   add_index "members", ["group_id"], name: "index_members_on_group_id"
   add_index "members", ["user_id"], name: "index_members_on_user_id"
+
+  create_table "temps", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "bill_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
