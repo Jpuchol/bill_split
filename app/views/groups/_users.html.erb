@@ -1,9 +1,10 @@
 <div id="group-form" title="Add group"></div>
-  <div class="row">
-
+    <div>
+      <h2> Users </h2>
+    </div> 
     
       <% @users.each do |usr| %>
-        <div class="span8 offset3">
+        <div >
         <%= 
           if current_user.admin?
             usr.email 
@@ -34,5 +35,4 @@
         <hr>
       </div>
     <% end %>
-  </div>
 </div>

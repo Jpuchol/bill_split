@@ -11,17 +11,26 @@ BillSplit::Application.routes.draw do
   resources :bills,    only: [:create, :destroy]
   resources :members,  only: [:create, :destroy ]
   resources :groups
+  resources :bill_users, only: [:create, :destroy]
 
   root 'static_pages#home'
-  match '/about',    to: 'static_pages#about', via: 'get'
-  match '/blog',     to: 'static_pages#blog',  via: 'get'
-  match '/help',     to: 'static_pages#help',  via: 'get'
-  match '/api',      to: 'static_pages#api',   via: 'get'
-  match '/signup',   to: 'users#new',          via: 'get'
-  match '/signin',   to: 'sessions#new',       via: 'get'
-  match '/signout',  to: 'sessions#destroy',   via: 'delete'
-  match '/newgrp',   to: 'groups#new',         via: 'get'
-  match '/mygrps',   to: 'groups#index',       via: 'get'
+  match '/about',                 to: 'static_pages#about', via: 'get'
+  match '/blog',                  to: 'static_pages#blog',  via: 'get'
+  match '/help',                  to: 'static_pages#help',  via: 'get'
+  match '/help/signup',           to: 'static_pages#signup',  via: 'get'
+  match '/help/signin',           to: 'static_pages#signin',  via: 'get'
+  match '/help/change_settings',  to: 'static_pages#change',  via: 'get'
+  match '/help/create_bill',      to: 'static_pages#createBill',  via: 'get'
+  match '/help/create_group',      to: 'static_pages#createGroup',  via: 'get'
+  match '/help/remove_group',      to: 'static_pages#remove',  via: 'get'
+  match '/help/manage_group',      to: 'static_pages#manage',  via: 'get'
+  match '/help/add_users_to_bill', to: 'static_pages#addUser',  via: 'get'
+  match '/signup',                to: 'users#new',          via: 'get'
+  match '/signin',                to: 'sessions#new',       via: 'get'
+  match '/signout',               to: 'sessions#destroy',   via: 'delete'
+  match '/newgrp',                to: 'groups#new',         via: 'get'
+  match '/mygrps',                to: 'groups#index',       via: 'get'
+
 #  match '/newbill',  to: 'bills#create',       via: 'post'
 
 

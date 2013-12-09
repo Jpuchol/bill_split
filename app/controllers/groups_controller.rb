@@ -15,6 +15,8 @@ class GroupsController < ApplicationController
   def show
     @users = User.all
     @group = Group.find(params[:id])
+    @bill = current_user.bills.build
+    @bill_user = current_user.bill_users.build
   end
 
   # GET /groups/new
