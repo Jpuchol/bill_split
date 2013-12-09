@@ -11,8 +11,8 @@ class MembersController < ApplicationController
 
 
   def destroy
-    @user = Member.find(params[:id])
-    current_user.unmember!(@user)
+    @group = Group.find(params[:member][:group_id])
+    @group.unmember!(params[:id])
     redirect_to @group
   end
 

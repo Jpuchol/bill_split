@@ -5,7 +5,7 @@
 
 <div id="group-form" title="Add group"></div>
 
-<% if current_user.groups.any? || current_user.admin? %>
+<% if current_user.admin? %>
   <div class="row">
     <% @groups.each do |group| %>
       <div class="span6 offset3">
@@ -27,4 +27,30 @@
       </div>
     <% end %>
   </div> 
+<% else %>
+  <% if @my_groups.any? %>
+    <div class="row">
+    <% @my_groups.each do |group| %>
+      <div class="span6 offset3">
+        <p>
+          <%= link_to group.name, group %> <span class="tab"></span>
+          <text>   #members: </text>
+          <text><%= group.members.count %></text>
+          <% if current_user.admin? %>
+            (<%=  group.user.name   %> : 
+             <%=group.user.email %>)
+          <% end %>
+          <% if current_user.id == group.user_id %>
+          <span class="right-edge">
+            <%= link_to image_tag("edit.png", :size => "30x30"),
+                 edit_group_path(group) %> 
+            <%= link_to image_tag('delete.png', :size => "30x30"),
+                 group, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </span>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div> 
+  <% end %>
 <% end %>
