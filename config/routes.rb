@@ -32,7 +32,7 @@ BillSplit::Application.routes.draw do
   match '/groups/:id',             to: 'bills#create',       via: 'post'
   match '/money',                 to: 'static_pages#money', via: 'get'
 
-#  match '/newbill',  to: 'bills#create',       via: 'post'
+#  match '/newbill',  to: 'bills#new',       via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

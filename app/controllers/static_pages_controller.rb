@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
       @users = User.all
       @user_bills = current_user.feed.pluck("DISTINCT user_id")
       @mygroups = Group.where("id IN (SELECT group_id FROM members WHERE user_id = ?)",current_user.id)
+#      @user_bills = current_user.feed.pluck("DISTINCT user_id")
     end
   end
 
