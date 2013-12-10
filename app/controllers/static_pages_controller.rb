@@ -34,8 +34,8 @@ class StaticPagesController < ApplicationController
     bills=BillUser.find_all_by_user_id(current_user.id)
     @owe=Hash.new
     bills.each do |bill|
-      unless bill.user_id == current_user.id
-        bill_detail=Bill.find_by_id(bill.bill_id)
+      bill_detail=Bill.find_by_id(bill.bill_id)
+      unless bill_detail.user_id == current_user.id
         bill_members=User.where("id IN (SELECT user_id FROM bill_users WHERE bill_id = ?)",bill.bill_id)
         unless bill_detail.nil?
           user=User.find_by_id(bill_detail.user_id)
