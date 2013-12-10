@@ -3,8 +3,5 @@
   <%= current_user.name %>
 </h1>
 <span>
-  <%= link_to "view my bills", current_user %>
-</span>
-<span>
   <%= pluralize(current_user.bills.count, "bill") %>
 </span>

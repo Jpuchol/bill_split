@@ -2,16 +2,15 @@
   <!--<%= link_to gravatar_for(feed_item.user), feed_item.user %>-->
 
   <span class="comment"><%= link_to feed_item.comment, feed_item %> </span>
-  <span class="Amount"> Amount: <%= feed_item.amount %> € </span>
-  <span class="timespan">
-     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span>
+  <span class="right-edge"> Amount: <%= feed_item.amount %> €   
+  
   <% if current_user?(feed_item.user) %>
-    <span class="right-edge">
+
     <%= link_to "delete", feed_item, method: :delete,
                                    data: { confirm: "You sure?" },
-                                   title: feed_item.comment %>
+                                   title: feed_item.comment, class: "btn btn-small btn-primary" %>
     </span>
+  <% else %>
   <% end %>
 
 </p>

@@ -4,7 +4,7 @@
 		<% i_owe = 0 %>
 		<% @owe.each do |key,user| %>
 			<% i_owe += user["amount"] %>
-			<div class="center"> - I owe <%= user["amount"] %> € to <%= user["name"] %><p></div>
+			<div class="center"> - I owe <%= user["amount"] %> € to <%= link_to user["name"],"/users/"+key %><p></div>
 		<% end %>
 		<div class ="center"> Total I owe : <%= i_owe %> € </p></div>
 	</div>
@@ -14,8 +14,14 @@
 		<% ows = 0 %>
 		<% @owe_me.each do |key,user| %>
 			<% ows += user["amount"] %>
-			<div class="center"> - <%= user["name"] %> owes me <%= user["amount"] %> €<p></div>
+			<div class="center"> - <%= link_to user["name"],"/users/"+key  %> owes me <%= user["amount"] %> €<p></div>
 		<% end %>
 		<div class ="center"> Total people owe me : <%= ows %> € </p></div>
 	</div>
 </div>
+<p></p><hr> <h2> Total :</h2> 
+<% if ows > i_owe %>
+	<div class = "center" id="green"> +<%= ows-i_owe %> € </div>
+<% else %>
+	<div class = "center" id="green"> -<%= i_owe-ows %> €</div>
+<% end %>

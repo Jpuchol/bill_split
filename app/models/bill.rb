@@ -7,6 +7,9 @@ class Bill < ActiveRecord::Base
   validates :comment,      presence: true, length: { maximum: 50 }
   validates :user_id,      presence: true
   validates :amount, presence: true
+  mount_uploader :ref, BillUploader
+  validates :ref, :file_size => { :maximum => 2.megabytes.to_i }
+  
 
   def groups?(user)
     bill_users.find_by(user_id: user.id)

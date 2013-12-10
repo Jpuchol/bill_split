@@ -8,7 +8,7 @@ BillSplit::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy ]
-  resources :bills,    only: [:create, :destroy]
+  resources :bills,    only: [:create, :edit, :destroy]
   resources :members,  only: [:create, :destroy ]
   resources :groups
   resources :bill_users, only: [:create, :destroy]
@@ -29,7 +29,6 @@ BillSplit::Application.routes.draw do
   match '/signin',                to: 'sessions#new',       via: 'get'
   match '/signout',               to: 'sessions#destroy',   via: 'delete'
   match '/newgrp',                to: 'groups#new',         via: 'get'
-  match '/mygrps',                to: 'groups#index',       via: 'get'
   match '/groups/:id',             to: 'bills#create',       via: 'post'
   match '/money',                 to: 'static_pages#money', via: 'get'
 

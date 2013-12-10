@@ -1,0 +1,7 @@
+<% provide(:title, 'Add picture to the Bill') %>
+<%= form_for(@bill) do |f| %>
+	<div class="field">
+	<%= f.file_field :ref,     placeholder: "Reference" %>
+	<%= f.submit "Add picture for the bill" %>
+	</div>
+<% end %>

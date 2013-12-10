@@ -14,7 +14,23 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @bills = @user.bills.paginate(page: params[:page])
+    if current_user==@user
+      redirect_to root_path
+    else
+      @bills = @user.bills.paginate(page: params[:page])
+    end 
+    @my_bills=Bill.where("(user_id = ?) AND (id IN (SELECT bill_id FROM bill_users WHERE user_id = ?))",current_user.id,params[:id])
+    @ows_me=0
+    @owe_him=0
+    @my_bills.each do |bill|
+      members=BillUser.find_all_by_bill_id(bill.id)
+      @ows_me+=bill.amount/members.count
+    end
+    @his_bills=Bill.where("(user_id = ?) AND (id IN (SELECT bill_id FROM bill_users WHERE user_id = ?))",params[:id],current_user.id)
+    @his_bills.each do |bill|
+      members=BillUser.find_all_by_bill_id(bill.id)
+      @owe_him+=bill.amount/members.count
+    end
   end
 
   # GET /users/new

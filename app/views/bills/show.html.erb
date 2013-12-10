@@ -4,26 +4,35 @@
   <aside class="span4">
     <section>
       <h1>
+
         <%= @bill.comment %>
       </h1>
       <p> Amount :  <%= @bill.amount %> € </p>
+      <% unless @bill.ref_url.nil? %>
+       <a href="<%= @bill.ref_url %>" rel="facebox"><%= image_tag @bill.ref_url, :size => "100x100" %></a>
+      <% else %>
+        <% if @bill.user_id == current_user.id %>
+          <%= link_to "Add a picture",edit_bill_path(@bill), class: "btn btn-small btn-primary", :rel => 'facebox' %>
+        <% end %>
+      <% end %>
     </section>
 	
   </aside>
   <div class="span7 offset1">
     <% unless current_user == @bill_owner %>
-    <p> Who paid? <%= @bill_owner.name %> </p>
+    <p> Who paid? <%= link_to @bill_owner.name, @bill_owner %> </p><hr>
     <p>How much i need to reemburse? 
-      <%= @bill.amount/@bill_members.count %>€</p>
+      <%= @bill.amount/@bill_members.count %>€</p> <hr>
     <% else %>
     <p> Who paid? Me </p>
     <% end %>
     <p> Who else is on the bill? </p> 
     <% @bill_members.each do |user| %>
-      <% if user.id != @bill.user_id %>
-        <p> - <%= user.name %></p>
+      <% if user.id != @bill.user_id && user.id != current_user.id%>
+        <p> - <%= link_to user.name, user %></p>
       <% end %>
     <% end %>
+    <hr>
 
   </div>
 </div>

@@ -2,6 +2,7 @@
 	<div class="field">
 	<%= f.text_field :amount,  placeholder: "Paid amount..." %>
 	<%= f.text_field :comment, placeholder: "Add comment..." %>
+	<p> Max 2Mo </p>
 	<%= f.file_field :ref,     placeholder: "Reference" %>
 	<%= f.hidden_field :group_id, :value => group.id %>
 	<p></p>

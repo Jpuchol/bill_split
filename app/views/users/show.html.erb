@@ -1,14 +1,19 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
       <h1>
         <%= image_tag @user.imag_url, :size => "150x150" %>
         <%= @user.name %>
       </h1>
     </section>
+
+    <section>
+      <p> I owe him <%=@owe_him%> € </p>
+      <p> He ows me <%=@ows_me%> € </p>
+    </section>
   </aside>
-  <div class="span5">
+  <div class="span5 offset2">
     <% if current_user==@user %>
       <% if @user.bills.any? %>
         <h3>My bills (<%= @user.bills.count %>)</h3>
@@ -16,6 +21,20 @@
           <%= render @bills %>
           <%= will_paginate @bills %>
         </ol>
+      <% end %>
+    <% else %>
+      <h2>Bills i have to reimburse : </h2>
+      <% @his_bills.each do |bill| %>
+        <p><%= link_to bill.comment, bill %>
+        <span class="right-edge">Total amount : <%=bill.amount%> €</span>
+        </p>
+      <% end %>
+      <hr>
+      <h2>Bills <%= @user.name %> has to reimburse me :  </h2>
+      <% @my_bills.each do |bill| %>
+        <p><%= link_to bill.comment, bill %>
+        <span class="right-edge">Total amount : <%=bill.amount%> €</span>
+        </p>
       <% end %>
     <% end %>
   </div>

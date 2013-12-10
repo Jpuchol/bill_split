@@ -1,8 +1,8 @@
 class BillsController < ApplicationController
   before_action :signed_in_user
+  before_action :set_bill, only: [:show, :edit, :update, :destroy]
 
   def show
-    @bill = Bill.find(params[:id])
     @bill_owner=User.find_by_id(@bill.user_id)
     @bill_members=User.where("id IN (SELECT user_id FROM bill_users WHERE bill_id = ?)",@bill.id)
   end
@@ -40,15 +40,30 @@ class BillsController < ApplicationController
   end
 
   def destroy
-    @bill = current_user.bills.find(params[:id])
     @bill.destroy
     redirect_to root_path
   end
 
+  def edit
+    @id = params[:id]
+  end
+
+  def update
+    if @bill.update(bill_params)
+      redirect_to @bill, notice: 'The picture was successfully added to the bill.'
+    else
+      redirect_to @bill, notice: 'Problem while adding the picture'
+    end
+  end
+
   private
 
+    def set_bill
+      @bill = Bill.find(params[:id])
+    end
+
     def bill_params
-      params.require(:bill).permit(:comment, :amount) 
+      params.require(:bill).permit(:comment, :amount, :ref) 
     end
 
     def correct_user

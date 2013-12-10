@@ -2,14 +2,6 @@ class GroupsController < ApplicationController
   before_action :signed_in_user
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
-  # GET /groups
-  # GET /groups.json
-  def index
-    @groups = Group.all
-    @my_groups=current_user.group_feed.paginate(page: params[:page])
-#    @groups = current_user.groups.paginate(page: params[:page])
-  end
-
   # GET /groups/1
   # GET /groups/1.json
   def show
