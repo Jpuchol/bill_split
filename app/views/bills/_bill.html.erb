@@ -1,5 +1,6 @@
-<li>
-  <span class="comment"><%= bill.comment %></span>
+<p>
+  <span class="comment"><%= link_to bill.comment, bill %> </span>
+  <span class="Amount"> Amount: <%= bill.amount %> € </span>
   <span class="timespan">
      Posted <%= time_ago_in_words(bill.created_at) %> ago.
   </span>
@@ -8,4 +9,4 @@
                            data: { confirm: "You sure?" },
                            title: bill.comment %>
   <% end %>
-</li>
+</p>
