@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :groups, dependent: :destroy
   has_many :members,    foreign_key: "user_id", dependent: :destroy
   has_many :bill_users, foreign_key: "user_id", dependent: :destroy
+  has_many :temps,      foreign_key: "user_id"
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   STR_REGEX = /\A[a-z0-9\-]+\z/i

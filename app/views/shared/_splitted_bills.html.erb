@@ -1,8 +1,9 @@
-<li id="<%= bill_user.id %>">
+<h1>Splitted bills</h1>
 
-  <span class="temps">
-    <%= User.find_by(user_bill.user_id) %>
-
-    <% end %>
-  </span>
-</div>
+<span class="temps">
+  <%= @user_bills.each do |f| %>
+    <p>
+      <span class Userid><%= User.find(f).name %></span>
+    </p>
+  <% end %>
+ </span>

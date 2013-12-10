@@ -1,6 +1,7 @@
 class Bill < ActiveRecord::Base
   belongs_to :user
   has_many :bill_users, foreign_key: "bill_id", dependent: :destroy
+  has_many :temps, foreign_key: "bill_id"
   accepts_nested_attributes_for :bill_users
   default_scope -> { order('created_at DESC') }
   validates :comment,      presence: true, length: { maximum: 50 }
@@ -22,4 +23,5 @@ class Bill < ActiveRecord::Base
                        WHERE user_id = :user_id"
     where("id IN (#{bill_user_ids})", user_id: user.id)
   end
+
 end
