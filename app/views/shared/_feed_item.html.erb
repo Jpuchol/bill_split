@@ -1,8 +1,11 @@
 <p>
   <!--<%= link_to gravatar_for(feed_item.user), feed_item.user %>-->
 
-  <span class="comment"><%= link_to feed_item.comment, feed_item %></span>
-  <span class="Amount"><%= feed_item.amount %></span>
+  <span class="comment"><%= link_to feed_item.comment, feed_item %> </span>
+  <span class="Amount"> Amount: <%= feed_item.amount %> € </span>
+  <span class="timespan">
+     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+  </span>
   <% if current_user?(feed_item.user) %>
     <span class="right-edge">
     <%= link_to "delete", feed_item, method: :delete,
@@ -11,4 +14,4 @@
     </span>
   <% end %>
 
-</p><hr>
+</p>

@@ -2,8 +2,6 @@
   <ol class="bills">
     <h1>Bill list</h1>
     <%= render partial: 'shared/feed_item', collection: @bill_items %>
+    <%= will_paginate @bill_items %>
   </ol>
-  <%= will_paginate @bill_items %>
-
-  <%= render 'shared/splitted_bills' %>
 <% end %>
