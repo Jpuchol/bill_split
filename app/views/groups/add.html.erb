@@ -1,16 +1,17 @@
-<div id="group-form" title="Add group"></div>
+<div class="row">
+  <div class="span4"> 
     <div>
-      <h2> Users <%= link_to "Add user","../add/#{@group.id}", :rel => "facebox" %></h2>
+      <h2> Users </h2>
     </div> 
-    
-      <% @group_users.each do |usr| %>
-        <div >
+        
+    <% @users.each do |usr| %>
+      <div>
         <%= 
-          if current_user.admin?
-            usr.email 
-          else 
-            usr.name
-          end
+        if current_user.admin?
+          usr.email 
+        else 
+          usr.name
+        end
         %>
         <span class="right-edge">
           <% if usr.id==@group.user_id %>
@@ -25,9 +26,9 @@
               <% end %>
             <% else %>
               <%= form_for @group.members.build(user_id: usr.id), html: { :style => "display:inline;" } do |f| %>
-              <%= f.hidden_field :group_id %>
-              <%= f.hidden_field :user_id %>
-              <%= f.submit "Add", class: "btn btn-small btn-primary" %>
+                <%= f.hidden_field :group_id %>
+                <%= f.hidden_field :user_id %>
+                <%= f.submit "Add", class: "btn btn-small btn-primary" %>
               <% end %>
             <% end %>
           <% end %>
@@ -35,4 +36,5 @@
         <hr>
       </div>
     <% end %>
+  </div>
 </div>

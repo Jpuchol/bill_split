@@ -16,6 +16,7 @@ class MembersController < ApplicationController
     redirect_to @group
   end
 
+
   private 
     def members_params
     params.require(:user).permit(:user_id)

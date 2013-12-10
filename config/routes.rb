@@ -29,6 +29,7 @@ BillSplit::Application.routes.draw do
   match '/signin',                to: 'sessions#new',       via: 'get'
   match '/signout',               to: 'sessions#destroy',   via: 'delete'
   match '/newgrp',                to: 'groups#new',         via: 'get'
+  match '/add/:id',                   to: 'groups#add',         via: 'get'
   match '/groups/:id',             to: 'bills#create',       via: 'post'
   match '/money',                 to: 'static_pages#money', via: 'get'
 

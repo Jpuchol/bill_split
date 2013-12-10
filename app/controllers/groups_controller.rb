@@ -1,11 +1,12 @@
 class GroupsController < ApplicationController
   before_action :signed_in_user
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :add]
 
   # GET /groups/1
   # GET /groups/1.json
   def show
     @users = User.all
+    @group_users = User.where("id IN (SELECT user_id FROM members WHERE group_id = ? )",params[:id])
     @group = Group.find(params[:id])
     @bill = current_user.bills.build
     @bill_user = current_user.bill_users.build
@@ -18,6 +19,11 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+  end
+
+  def add
+    @users = User.all
+    
   end
 
 
