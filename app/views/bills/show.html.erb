@@ -6,11 +6,24 @@
       <h1>
         <%= @bill.comment %>
       </h1>
-      <p> <%= @bill.amount %> </p>
+      <p> Amount :  <%= @bill.amount %> € </p>
     </section>
 	
   </aside>
   <div class="span7 offset1">
-    
+    <% unless current_user == @bill_owner %>
+    <p> Who paid? <%= @bill_owner.name %> </p>
+    <p>How much i need to reemburse? 
+      <%= @bill.amount/@bill_members.count %>€</p>
+    <% else %>
+    <p> Who paid? Me </p>
+    <% end %>
+    <p> Who else is on the bill? </p> 
+    <% @bill_members.each do |user| %>
+      <% if user.id != @bill.user_id %>
+        <p> - <%= user.name %></p>
+      <% end %>
+    <% end %>
+
   </div>
 </div>

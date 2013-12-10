@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="span4 offset1">
+		<h2> People I owe money to : </h2>
+		<% i_owe = 0 %>
+		<% @owe.each do |key,user| %>
+			<% i_owe += user["amount"] %>
+			<div class="center"> - I owe <%= user["amount"] %> € to <%= user["name"] %><p></div>
+		<% end %>
+		<div class ="center"> Total I owe : <%= i_owe %> € </p></div>
+	</div>
+
+	<div class="span4 offset2">
+		<h2> People who owes me money : </h2>
+		<% ows = 0 %>
+		<% @owe_me.each do |key,user| %>
+			<% ows += user["amount"] %>
+			<div class="center"> - <%= user["name"] %> owes me <%= user["amount"] %> €<p></div>
+		<% end %>
+		<div class ="center"> Total people owe me : <%= ows %> € </p></div>
+	</div>
+</div>

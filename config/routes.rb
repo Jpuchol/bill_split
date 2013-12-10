@@ -31,6 +31,7 @@ BillSplit::Application.routes.draw do
   match '/newgrp',                to: 'groups#new',         via: 'get'
   match '/mygrps',                to: 'groups#index',       via: 'get'
   match '/groups/:id',             to: 'bills#create',       via: 'post'
+  match '/money',                 to: 'static_pages#money', via: 'get'
 
 #  match '/newbill',  to: 'bills#create',       via: 'post'
 

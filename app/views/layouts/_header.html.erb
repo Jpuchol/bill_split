@@ -16,6 +16,7 @@
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
+            <li><%= link_to "Money", money_path %></li>
             <li><%= link_to "Users", users_path %></li>
             <li><%= link_to "My groups", mygrps_path %></li>
             <li><%= link_to "Account Settings",edit_user_path(current_user) %></li>
