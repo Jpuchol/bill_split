@@ -1,6 +1,6 @@
 <div id="group-form" title="Add group"></div>
     <div>
-      <h2> Users <%= link_to "Add user","../add/#{@group.id}", :rel => "facebox" %></h2>
+      <h2> Users <%= link_to image_tag("add-image.png", :size => "25x25"),"../add/#{@group.id}", :rel => "facebox" %></h2>
     </div> 
     
       <% @group_users.each do |usr| %>
