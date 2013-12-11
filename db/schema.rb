@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20131207153223) do
   create_table "bill_users", force: true do |t|
     t.integer  "bill_id"
     t.integer  "user_id"
+    t.boolean  "validate",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

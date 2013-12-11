@@ -4,7 +4,9 @@ class BillsController < ApplicationController
 
   def show
     @bill_owner=User.find_by_id(@bill.user_id)
-    @bill_members=User.where("id IN (SELECT user_id FROM bill_users WHERE bill_id = ?)",@bill.id)
+    @bill_members_validate=BillUser.where("bill_id = ? AND validate = 't'",@bill.id)
+    @bill_members_not_validate=BillUser.where("bill_id = ? AND validate = 'f'",@bill.id)
+    
   end
 
   def create

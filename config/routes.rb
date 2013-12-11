@@ -11,7 +11,7 @@ BillSplit::Application.routes.draw do
   resources :bills,    only: [:create, :edit, :destroy]
   resources :members,  only: [:create, :destroy ]
   resources :groups
-  resources :bill_users, only: [:create, :destroy]
+  resources :bill_users, only: [:create, :update, :destroy]
 
   root 'static_pages#home'
   match '/about',                 to: 'static_pages#about', via: 'get'

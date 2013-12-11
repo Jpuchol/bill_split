@@ -1,5 +1,6 @@
 class BillUsersController < ApplicationController
   before_action :signed_in_user
+  before_action :set_bill_user, only: [:show, :edit, :update, :destroy]
 
 
 
@@ -21,11 +22,25 @@ class BillUsersController < ApplicationController
   def destroy
   end
 
+  def edit
+  end
+
+  def update
+    if @bill_user.update(bill_user_params)
+      bill = Bill.find_by(id: @bill_user.bill_id)
+      redirect_to bill, notice: 'User has paid'
+    end
+  end
+
 
   private
 
+    def set_bill_user
+      @bill_user = BillUser.find(params[:id])
+    end
+
     def bill_user_params
-      params.require(:bill).permit()
+      params.require(:bill_user).permit(:validate)
     end
 
 =begin

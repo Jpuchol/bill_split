@@ -3,6 +3,7 @@ class CreateBillUsers < ActiveRecord::Migration
     create_table :bill_users do |t|
       t.integer :bill_id
       t.integer :user_id
+      t.boolean :validate, :default => false
 
       t.timestamps
     end

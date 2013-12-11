@@ -4,5 +4,4 @@ class BillUser < ActiveRecord::Base
   validates :bill_id, presence: true
   validates :user_id, presence: true
 
-
 end

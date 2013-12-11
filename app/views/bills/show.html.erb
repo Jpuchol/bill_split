@@ -22,14 +22,45 @@
     <% unless current_user == @bill_owner %>
     <p> Who paid? <%= link_to @bill_owner.name, @bill_owner %> </p><hr>
     <p>How much i need to reemburse? 
-      <%= @bill.amount/@bill_members.count %>€</p> <hr>
+      <%= @bill.amount/(@bill_members_validate.count+@bill_members_not_validate.count) %>€</p> <hr>
     <% else %>
     <p> Who paid? Me </p>
     <% end %>
     <p> Who else is on the bill? </p> 
-    <% @bill_members.each do |user| %>
+    <% @bill_members_validate.each do |user| %>
+      <% this_user=@bill.user?(user.user_id) %>
+      <% if this_user.id != @bill.user_id && user.id != current_user.id%>
+        <p> - <%= link_to this_user.name, this_user %>
+        <% if current_user.id == @bill_owner.id %>
+        <span class="right-edge">
+          Already validated (owner)
+        </span>
+        <% else %>
+          <span class="right-edge">
+          Already validated (not owner)
+        </span>
+        <% end %>
+        </p>
+      <% end %>
+    <% end %>
+    <% @bill_members_not_validate.each do |user| %>
+      <% this_user=@bill.user?(user.user_id) %>
       <% if user.id != @bill.user_id && user.id != current_user.id%>
-        <p> - <%= link_to user.name, user %></p>
+        <% if current_user.id == @bill_owner.id %>
+          <%= form_for(user) do |f| %>
+            <p> - <%= link_to this_user.name, this_user %>
+            <%= f.hidden_field :validate, :value => true %>
+            <span class="right-edge">
+          <%= f.submit "This user paid the bill" %>
+            </span>
+          <% end %>
+        <% else %>
+          <p> - <%= link_to this_user.name, this_user %>
+            <span class="right-edge">
+          Waiting validation by owner
+        </span>
+        <% end %>
+        </p>
       <% end %>
     <% end %>
     <hr>

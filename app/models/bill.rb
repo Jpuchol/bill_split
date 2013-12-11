@@ -12,6 +12,10 @@ class Bill < ActiveRecord::Base
   validates :ref, :file_size => { :maximum => 2.megabytes.to_i }
   
 
+  def user?(id)
+    User.find_by(id: id)
+  end
+
   def groups?(user)
     bill_users.find_by(user_id: user.id)
   end
