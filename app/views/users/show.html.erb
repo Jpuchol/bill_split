@@ -9,8 +9,8 @@
     </section>
 
     <section>
-      <p> I owe him <%=@owe_him%> € </p>
-      <p> He ows me <%=@ows_me%> € </p>
+      <p> I owe <%= @user.name %> <%=@owe_him%> € </p>
+      <p> <%= @user.name %> ows me <%=@ows_me%> € </p>
     </section>
   </aside>
   <div class="span5 offset2">

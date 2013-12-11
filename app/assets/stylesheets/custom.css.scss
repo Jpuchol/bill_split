@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$redLight : #ff0000;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -262,5 +263,5 @@ span.right-edge{
 }
 
 #red {
-  color: $red;
+  color: $redLight;
 }

@@ -23,5 +23,5 @@
 <% if ows > i_owe %>
 	<div class = "center" id="green"> +<%= ows-i_owe %> € </div>
 <% else %>
-	<div class = "center" id="green"> -<%= i_owe-ows %> €</div>
+	<div class = "center" id="red"> -<%= i_owe-ows %> €</div>
 <% end %>
