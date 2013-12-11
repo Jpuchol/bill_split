@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.bills.paginate(page: params[:page])
       @bill_items = current_user.feed.paginate(page: params[:page])
       @users = User.all
-      @user_bills = current_user.feed.pluck("DISTINCT user_id")
+      #@user_bills = current_user.feed.pluck("DISTINCT user_id")
       @mygroups = Group.where("id IN (SELECT group_id FROM members WHERE user_id = ?)",current_user.id)
 #      @user_bills = current_user.feed.pluck("DISTINCT user_id")
     end
