@@ -1,3 +1,4 @@
+require 'file_size_validator' 
 class Bill < ActiveRecord::Base
   belongs_to :user
   has_many :bill_users, foreign_key: "bill_id", dependent: :destroy
