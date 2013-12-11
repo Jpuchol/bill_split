@@ -8,7 +8,7 @@
         <%= @bill.comment %>
       </h1>
       <p> Amount :  <%= @bill.amount %> € </p>
-      <% unless @bill.ref_url.nil? %>
+      <% unless (@bill.ref_url.nil? || @bill.ref_url.eql?("/uploads/bills_pic/.jpg")) %>
        <a href="<%= @bill.ref_url %>" rel="facebox"><%= image_tag @bill.ref_url, :size => "100x100" %></a>
       <% else %>
         <% if @bill.user_id == current_user.id %>
