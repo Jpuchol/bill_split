@@ -15,6 +15,13 @@
 //= require jquery-ui
 //= require bootstrap
 //= require turbolinks
+//= require facebox
 //= require_tree .
-
+	
+jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : '../src/loading.gif',
+        closeImage   : '../src/closelabel.png'
+      })
+    })
 

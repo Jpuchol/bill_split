@@ -120,8 +120,10 @@
     },
 
     reveal: function(data, klass) {
+      
       $(document).trigger('beforeReveal.facebox')
       if (klass) $('#facebox .content').addClass(klass)
+      $('#facebox .content').empty() 
       $('#facebox .content').append(data)
       $('#facebox .loading').remove()
       $('#facebox .body').children().fadeIn('normal')
