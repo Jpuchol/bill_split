@@ -28,39 +28,43 @@
     <% end %>
     <p> Who else is on the bill? </p> 
     <% @bill_members_validate.each do |user| %>
-      <% this_user=@bill.user?(user.user_id) %>
-      <% if this_user.id != @bill.user_id && user.id != current_user.id%>
-        <p> - <%= link_to this_user.name, this_user %>
-        <% if current_user.id == @bill_owner.id %>
-        <span class="right-edge">
-          Already validated (owner)
-        </span>
-        <% else %>
+        <% this_user=@bill.user?(user.user_id) %>
+        <% if user.user_id != @bill_owner.id %>
+          <p> - <%= link_to this_user.name, this_user %>
           <span class="right-edge">
-          Already validated (not owner)
-        </span>
+          <% if current_user.id == @bill_owner.id %>
+            Already validated (owner)
+          <% else %>
+            Already validated (not owner)
+          <% end %>
+          </span>
+          </p>
         <% end %>
-        </p>
-      <% end %>
     <% end %>
     <% @bill_members_not_validate.each do |user| %>
       <% this_user=@bill.user?(user.user_id) %>
-      <% if user.id != @bill.user_id && user.id != current_user.id%>
+      <% if user.user_id != @bill_owner.id %>
+        <div class="row">
         <% if current_user.id == @bill_owner.id %>
+          
+          
           <%= form_for(user) do |f| %>
             <p> - <%= link_to this_user.name, this_user %>
-            <%= f.hidden_field :validate, :value => true %>
             <span class="right-edge">
-          <%= f.submit "This user paid the bill" %>
+            <%= f.hidden_field :validate, :value => true %>
+            <%= f.submit "This user paid the bill" %>
             </span>
+            </p>
           <% end %>
+          
         <% else %>
           <p> - <%= link_to this_user.name, this_user %>
-            <span class="right-edge">
-          Waiting validation by owner
-        </span>
+          <span class="right-edge">
+            Waiting validation by owner
+          </span>
+          </p>
         <% end %>
-        </p>
+        </div>
       <% end %>
     <% end %>
     <hr>
