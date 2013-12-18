@@ -38,7 +38,7 @@ class StaticPagesController < ApplicationController
     bills.each do |bill|
       bill_detail=Bill.find_by_id(bill.bill_id)
       unless bill_detail.user_id == current_user.id
-        bill_members=User.where("id IN (SELECT user_id FROM bill_users WHERE bill_id = ?) AND validate = 'f'",bill.bill_id)
+        bill_members=User.where("id IN (SELECT user_id FROM bill_users WHERE bill_id = ? AND validate = 'f')",bill.bill_id)
         unless bill_detail.nil?
           user=User.find_by_id(bill_detail.user_id)
           if @owe["#{bill_detail.user_id}"].nil?
