@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
 
   def money
     #People who owe me
-    bills=BillUser.where("bill_id IN (SELECT id FROM bills WHERE user_id=?) AND validate = 'f'",current_user.id)
+    bills=BillUser.where("bill_id IN (SELECT id FROM bills WHERE user_id=? AND validate = 'f')",current_user.id)
     @owe_me=Hash.new
     bills.each do |bill|
       unless bill.user_id == current_user.id
